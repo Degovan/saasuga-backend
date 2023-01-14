@@ -23,11 +23,6 @@ jobs:
             - ./vendor
           key: v1-dependencies-{{ checksum "composer.json" }}
 
-      # Prepare the Database
-      - run:
-          name: "Generate App Key"
-          command: php artisan key:generate
-
       - run:
           name: "Install SQLite"
           command: sudo apt install php8.2-sqlite3
