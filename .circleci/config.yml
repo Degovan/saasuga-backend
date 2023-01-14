@@ -1,0 +1,41 @@
+version: 2.1
+orbs:
+  browser-tools: circleci/browser-tools@1.1
+jobs:
+  build:
+    docker:
+      - image: cimg/php:8.2.0-browsers
+    steps:
+      - browser-tools/install-browser-tools
+      - checkout
+
+      - restore_cache:
+          keys:
+            - v1-dependencies-{{ checksum "composer.json" }}
+            - v1-dependencies-
+
+      - run:
+          name: "Install Dependencies"
+          command: composer install
+
+      - save_cache:
+          paths:
+            - ./vendor
+          key: v1-dependencies-{{ checksum "composer.json" }}
+
+      # Prepare the Database
+      - run:
+          name: "Generate App Key"
+          command: php artisan key:generate
+
+      - run:
+          name: "Install SQLite"
+          command: sudo apt install php8.2-sqlite3
+
+      - run:
+          name: "Create database and run migration"
+          command: php artisan migrate --env=testing
+
+      - run:
+          name: "Run Tests"
+          command: php artisan test -v
