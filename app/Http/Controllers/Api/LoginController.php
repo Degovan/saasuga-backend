@@ -21,7 +21,7 @@ class LoginController extends Controller
 
         return $this->success(
             ['redirect_url' => $url],
-            "Success getting redirect url"
+            'Success getting redirect url'
         );
     }
 

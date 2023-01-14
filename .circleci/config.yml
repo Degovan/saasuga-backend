@@ -28,4 +28,6 @@ jobs:
 
       - run:
           name: "Run Tests"
-          command: php artisan test -v
+          command: |
+            php artisan test -v
+            ./vendor/bin/pint --test -v

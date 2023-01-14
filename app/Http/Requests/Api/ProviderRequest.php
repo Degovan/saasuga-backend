@@ -39,9 +39,11 @@ class ProviderRequest extends FormRequest
 
     public function validateProvider($provider)
     {
-        if(!in_array($provider, $this->providers)) throw new FailedValidation([
-            'provider' => 'The provider is not valid'
-        ]);
+        if (! in_array($provider, $this->providers)) {
+            throw new FailedValidation([
+                'provider' => 'The provider is not valid',
+            ]);
+        }
     }
 
     protected function failedValidation(Validator $validator)

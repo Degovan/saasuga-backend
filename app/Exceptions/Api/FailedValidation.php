@@ -10,7 +10,8 @@ class FailedValidation extends Exception
     use ApiResponser;
 
     public function __construct(private $errors)
-    {}
+    {
+    }
 
     public function render()
     {

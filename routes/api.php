@@ -19,7 +19,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::controller(LoginController::class)->group(function() {
+Route::controller(LoginController::class)->group(function () {
     Route::get('login/{provider}', 'redirectToProvider');
     Route::get('login/{provider}/callback', 'handleProviderCallback');
 });
