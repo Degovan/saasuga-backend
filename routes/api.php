@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Api\LoginController;
+use App\Http\Controllers\Api\UrlController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -15,11 +16,15 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
-});
-
 Route::controller(LoginController::class)->group(function () {
     Route::get('login/{provider}', 'redirectToProvider');
     Route::get('login/{provider}/callback', 'handleProviderCallback');
+});
+
+Route::middleware('auth:sanctum')->group(function () {
+    Route::apiResource('urls', UrlController::class);
+});
+
+Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
+    return $request->user();
 });
