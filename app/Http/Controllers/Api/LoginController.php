@@ -25,6 +25,18 @@ class LoginController extends Controller
         );
     }
 
+    public function getProviderCode(ProviderRequest $request, $provider)
+    {
+        $request->validateProvider($provider);
+
+        return $this->success(
+            [
+                'code' => $request->code,
+                'provider' => $provider,
+            ]
+        );
+    }
+
     public function handleProviderCallback(ProviderRequest $request, $provider)
     {
         $request->validateProvider($provider);
