@@ -13,6 +13,7 @@ class ProviderRequest extends FormRequest
 
     public $providers = [
         'google',
+        'github',
     ];
 
     /**
