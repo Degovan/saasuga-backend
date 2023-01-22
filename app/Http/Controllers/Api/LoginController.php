@@ -22,7 +22,7 @@ class LoginController extends Controller
         return $this->success(
             ['redirect_url' => $url],
             'Success getting redirect url'
-    );
+        );
     }
 
     public function getProviderCode(ProviderRequest $request, $provider)
