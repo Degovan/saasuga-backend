@@ -2,7 +2,7 @@
 
 use App\Http\Controllers\Api\LoginController;
 use App\Http\Controllers\Api\UrlController;
-use Illuminate\Http\Request;
+use App\Http\Controllers\Api\UserController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -23,9 +23,8 @@ Route::controller(LoginController::class)->group(function () {
 });
 
 Route::middleware('auth:sanctum')->group(function () {
-    Route::apiResource('urls', UrlController::class);
-});
+    Route::get('user', [UserController::class, 'show']);
+    Route::delete('user', [UserController::class, 'logout']);
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
+    Route::apiResource('urls', UrlController::class);
 });
