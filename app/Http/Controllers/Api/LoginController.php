@@ -25,18 +25,6 @@ class LoginController extends Controller
         );
     }
 
-    public function getProviderCode(ProviderRequest $request, $provider)
-    {
-        $request->validateProvider($provider);
-
-        return $this->success(
-            [
-                'code' => $request->code,
-                'provider' => $provider,
-            ]
-        );
-    }
-
     public function handleProviderCallback(ProviderRequest $request, $provider)
     {
         $request->validateProvider($provider);
@@ -62,9 +50,6 @@ class LoginController extends Controller
 
         $token = $userCreated->createToken('login-token')->plainTextToken;
 
-        return $this->success(
-            ['user' => $userCreated, 'access_token' => $token],
-            'Login successfully'
-        );
+        return redirect(config('app.client_url')."/auth/callback?token={$token}");
     }
 }
