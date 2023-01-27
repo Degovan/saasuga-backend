@@ -2,6 +2,7 @@
 
 <p align="center">
 <img src="https://img.shields.io/github/license/Degovan/saasuga-backend" alt="License">
+<img alt="GitHub repo size" src="https://img.shields.io/github/repo-size/Degovan/saasuga-backend">
 </p>
 
 ## About Saasuga
